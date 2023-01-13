@@ -1,5 +1,8 @@
 <script>
 export default {
+    props: {
+        card: Array
+    },
     data(){
         return {
         }
