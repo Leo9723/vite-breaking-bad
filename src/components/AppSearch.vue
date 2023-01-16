@@ -20,6 +20,16 @@ export default {
         </select>
     </div>
 </template>
-<style lang="">
-    
+<style lang="scss">
+    select {
+        background-color: white;
+        border: 2px solid black;
+        border-radius: 10px;
+        padding: 10px 20px;
+        margin-top: 30px;
+        margin-left: 200px;
+        option {
+            background-color: white;
+        }
+    }
 </style>

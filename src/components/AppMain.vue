@@ -17,25 +17,31 @@ export default {
       this.GetCards();
     },
     methods: {
-      GetCards(){
+      GetCards(word){
         let newUrl = store.url;
-        
-       newUrl += `?type=${word}`
-        
+        if(word != undefined) {
+
+          newUrl += `?type=${word}`
+
+        }
+          store.loading = false
         axios.get(newUrl).then((response) => {
           console.log(response.data.data)
           store.CardList = response.data.data
           store.loading = true
+          console.log(store.CardList.length)
         })
-      },
-      searchType(word){
-        console.log(word)
       }
     }
 }
 </script>
 <template lang="">
-  <AppSearch @search="searchType"></AppSearch>
+  <div class="search">
+    <AppSearch @search="GetCards"></AppSearch>
+  </div>
+  <div class="results">
+    Sono stati trovati {{ store.CardList.length }} risultati
+  </div>
     <div class="all">
       <div class="maincont" v-if="store.loading">
           <Card v-for="(card, index) in store.CardList" :card="card" :key="index" :img="card.card_images" />
@@ -53,6 +59,12 @@ export default {
     </div>
 </template>
 <style lang="scss">
+.results {
+  margin-top: 30px;
+  text-align: center;
+  font-weight: bold;
+  font-size: x-large;
+}
 .all {
   margin-top: 30px;
 }
