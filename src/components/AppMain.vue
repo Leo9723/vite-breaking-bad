@@ -2,9 +2,11 @@
 import Card from './Card.vue'
 import { store } from '../store.js'
 import axios from 'axios'
+import AppSearch from './AppSearch.vue'
 export default {
     components: {
-    Card
+    Card,
+    AppSearch
   },
   data(){
         return {
@@ -21,28 +23,39 @@ export default {
           store.CardList = response.data.data
           store.loading = true
         })
+      },
+      searchType(word){
+        word = type
+        console.log(word)
       }
     }
 }
 </script>
 <template lang="">
+  <AppSearch></AppSearch>
+  <div @search="searchType">
+
+  </div>
     <div class="all">
-    <div class="maincont" v-if="store.loading">
-        <Card v-for="(card, index) in store.CardList" :card="card" :key="index" :img="card.card_images" />
-    </div>
-    <div v-else>
-        <div class="row">
-            <div>
-                <i class="loading-icon fas fa-circle-notch"></i>
-                <div class="loading-text">
-                    CARICAMENTO IN CORSO...
-                </div>
-            </div>
-        </div>
-    </div>
+      <div class="maincont" v-if="store.loading">
+          <Card v-for="(card, index) in store.CardList" :card="card" :key="index" :img="card.card_images" />
+      </div>
+      <div v-else>
+          <div class="row">
+              <div>
+                  <i class="loading-icon fas fa-circle-notch"></i>
+                  <div class="loading-text">
+                      CARICAMENTO IN CORSO...
+                  </div>
+              </div>
+          </div>
+      </div>
     </div>
 </template>
 <style lang="scss">
+.all {
+  margin-top: 30px;
+}
       .maincont {
         display: flex;
         flex-wrap: wrap;

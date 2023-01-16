@@ -2,13 +2,13 @@
 import AppMain from './components/AppMain.vue'
 export default {
   components: {
-    AppMain
+    AppMain,
   }
 }
 </script>
 <template lang="">
   <div>
-       <AppMain></AppMain>
+      <AppMain></AppMain>
   </div>
 </template>
 <style lang="scss">

@@ -10,8 +10,8 @@ export default {
 <template lang="">
     <div class="cardContainer">
         <div class="card">
-          <div class="image" v-for="(image, index) in img">
-            <img :src="image.image_url" alt="">
+          <div class="image">
+            <img :src="img[0].image_url" alt="">
           </div>
           <div class="name">
             {{ card.name }}
