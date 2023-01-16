@@ -18,24 +18,24 @@ export default {
     },
     methods: {
       GetCards(){
-        axios.get(store.url).then((response) => {
+        let newUrl = store.url;
+        
+       newUrl += `?type=${word}`
+        
+        axios.get(newUrl).then((response) => {
           console.log(response.data.data)
           store.CardList = response.data.data
           store.loading = true
         })
       },
       searchType(word){
-        word = type
         console.log(word)
       }
     }
 }
 </script>
 <template lang="">
-  <AppSearch></AppSearch>
-  <div @search="searchType">
-
-  </div>
+  <AppSearch @search="searchType"></AppSearch>
     <div class="all">
       <div class="maincont" v-if="store.loading">
           <Card v-for="(card, index) in store.CardList" :card="card" :key="index" :img="card.card_images" />
